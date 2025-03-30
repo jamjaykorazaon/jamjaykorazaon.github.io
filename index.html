@@ -1,321 +1,599 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Party Animals - Ultimate Party Game</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>Portfolio Tawisak Pinpayun</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
     <style>
-        :root {
-            --primary: #ff6b6b;
-            --secondary: #4ecdc4;
-            --dark: #1a1a1a;
-            --light: #f8f9fa;
+        .triangle {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 0 50px 50px;
+            border-color: transparent transparent #007bff transparent;
+            animation: move 5s infinite;
         }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background: var(--dark);
-            color: var(--light);
-            min-height: 100vh;
+        .triangle.small {
+            border-width: 0 0 20px 20px;
+        }
+
+        .triangle.medium {
+            border-width: 0 0 30px 30px;
+        }
+
+        .triangle.large {
+            border-width: 0 0 40px 40px;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(100px, 100px);
+            }
+        }
+
+        @keyframes animate {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: #007bff !important;
+            background: rgba(0, 123, 255, 0.1);
+            border-radius: 5px;
         }
 
         .navbar {
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
 
         .navbar.scrolled {
-            background: rgba(0,0,0,0.9);
-        }
-
-        .hero {
-            background: url('https://images.unsplash.com/photo-1517849845537-4d257902454a') center/cover;
-            height: 100vh;
-            position: relative;
-            padding: 150px 20px;
-            text-align: center;
-        }
-
-        .hero-content {
-            opacity: 0;
-            transform: translateY(50px);
-            animation: fadeInUp 1.5s ease-out forwards;
-        }
-
-        .cta-button {
-            background: var(--primary);
-            border: 2px solid var(--primary);
-            padding: 12px 36px;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button:hover {
-            background: transparent;
-            color: var(--primary);
-            transform: scale(1.05);
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--secondary);
-            z-index: -1;
-            transition: transform 0.3s;
-            transform-origin: left;
-            transform: scaleX(0);
-        }
-
-        .cta-button:hover::before {
-            transform: scaleX(1);
-        }
-
-        .feature-card {
-            background: #2d2d2d;
-            border-radius: 15px;
-            padding: 30px;
-            transition: transform 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 15px;
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 5px solid var(--primary);
-            border-radius: 15px;
-        }
-
-        .scroll-down {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
-
-        .footer {
-            background: #111;
-            padding: 30px 0;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-20px);}
-            60% {transform: translateY(-10px);}
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            background: #ffffff !important;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="https://i.imgur.com/4x7h3kt.png" alt="Party Animals Logo" width="40" height="40">
-                Party Animals
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#hero">Home1</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#features">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#trailer">Trailer</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#download">Download</a>
-                    </li>
-                </ul>
+
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="51">
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm py-lg-0 px-4 px-lg-5"
+        style="background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);">
+        <a href="index.html" class="navbar-brand d-flex align-items-center">
+            <h1 class="m-0"
+                style="font-size: 2rem; font-weight: 700; letter-spacing: 2px; background: linear-gradient(to right, #007bff, #00d4ff); -webkit-background-clip: text; color: transparent; transition: all 0.3s ease; animation: animate 5s infinite;">
+                Tawisak Pinpayun</h1>
+        </a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+            style="border: none; padding: 8px;">
+            <span class="navbar-toggler-icon"
+                style="background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox=\'0 0 30 30\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath stroke=\'%23007bff\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' d=\'M4 7h22M4 15h22M4 23h22\'/%3E%3C/svg%3E');"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between py-4 py-lg-0" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a href="#home" class="nav-item nav-link"
+                    style="color: #333; font-weight: 500; padding: 15px 20px; transition: all 0.3s ease;">Home</a>
+                <a href="#skill" class="nav-item nav-link"
+                    style="color: #333; font-weight: 500; padding: 15px 20px; transition: all 0.3s ease;">Skills</a>
+            </div>
+            <div class="navbar-nav me-auto py-0">
+                <a href="#project" class="nav-item nav-link"
+                    style="color: #333; font-weight: 500; padding: 15px 20px; transition: all 0.3s ease;">Projects</a>
+                <a href="#contact" class="nav-item nav-link"
+                    style="color: #333; font-weight: 500; padding: 15px 20px; transition: all 0.3s ease;">Contact</a>
             </div>
         </div>
     </nav>
+    <!-- Navbar End -->
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero d-flex align-items-center">
-        <div class="container text-center hero-content" data-aos="fade-up" data-aos-duration="1500">
-            <h1 class="display-2 mb-4">UNLEASH THE FUN</h1>
-            <p class="lead mb-5">The wildest party game of 2023 is here!</p>
-            <div>
-                <button class="cta-button me-3">PLAY NOW</button>
-                <button class="cta-button border-secondary text-secondary">WATCH TRAILER</button>
-            </div>
-            <div class="scroll-down">
-                <i class="bi bi-chevron-down" style="font-size: 2rem;"></i>
+
+
+
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-light my-6 mt-0" id="home"
+        style="min-height: 50vh; display: flex; align-items: center;">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6 py-6 pb-0 pt-lg-0">
+                    <h3 class="text-primary mb-3 animate__animated animate__fadeInDown" style="letter-spacing: 2px;">I'm
+                    </h3>
+                    <h1 class="display-3 mb-3 animate__animated animate__fadeInLeft"
+                        style="font-weight: 700; color: #333;">Tawisak Pinpayun</h1>
+                    <h2 class="typed-text-output d-inline text-primary" style="font-weight: 500;"></h2>
+                    <div class="typed-text d-none">Fullstack Developer, Web Application Developer</div>
+                    <div class="mt-4">
+                        <a href="#contact"
+                            class="btn btn-primary btn-lg rounded-pill px-4 py-2 animate__animated animate__pulse animate__infinite">Get
+                            in Touch</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <div class="profile-img-container">
+                        <!-- <img class="img-fluid rounded-circle shadow-lg" src="img/profile.png" alt="Profile" style="max-width: 80%; transition: transform 0.3s ease-in-out;"> -->
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+    <!-- Header End -->
 
-    <!-- Features Section -->
-    <section id="features" class="py-5">
+    <!-- About Start -->
+    <div class="container-xxl py-6" id="about">
         <div class="container">
-            <h2 class="text-center mb-5" data-aos="fade-up">Why Party Animals?</h2>
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="d-flex align-items-center mb-5">
+                        <div class="years flex-shrink-0 text-center me-4">
+                            <h1 class="display-1 mb-0">3</h1>
+                            <h5 class="mb-0">Years</h5>
+                        </div>
+                        <h3 class="lh-base mb-0">of working experience as a Fullstack Developer , Web Application
+                            Developer</h3>
+                    </div>
+                    <p class="mb-4">Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No stet est diam rebum
+                        amet diam ipsum. Clita clita labore, dolor duo nonumy clita sit at, sed sit sanctus dolor eos.
+                    </p>
+                    <p class="mb-3"><i class="far fa-check-circle text-primary me-3"></i>Afordable Prices</p>
+                    <p class="mb-3"><i class="far fa-check-circle text-primary me-3"></i>High Quality Product</p>
+                    <p class="mb-3"><i class="far fa-check-circle text-primary me-3"></i>On Time Project Delivery</p>
+                    <a class="btn btn-primary py-3 px-5 mt-3" href="">Read More</a>
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="row g-3 mb-4">
+                        <div class="col-sm-6">
+                            <img class="img-fluid rounded" src="img/about-1.jpg" alt="">
+                        </div>
+                        <div class="col-sm-6">
+                            <img class="img-fluid rounded" src="img/about-2.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <h5 class="border-end pe-3 me-3 mb-0">Happy Clients</h5>
+                        <h2 class="text-primary fw-bold mb-0" data-toggle="counter-up">1234</h2>
+                    </div>
+                    <p class="mb-4">Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No stet est diam amet
+                        diam ipsum clita labore dolor duo clita.</p>
+                    <div class="d-flex align-items-center mb-3">
+                        <h5 class="border-end pe-3 me-3 mb-0">Projects Completed</h5>
+                        <h2 class="text-primary fw-bold mb-0" data-toggle="counter-up">1234</h2>
+                    </div>
+                    <p class="mb-0">Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No stet est diam amet
+                        diam ipsum clita labore dolor duo clita.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- Expertise Start -->
+    <div class="container-xxl py-6 pb-5" id="skill">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <h1 class="display-5 mb-5 text-primary fw-bold">Skills & Experience</h1>
+                    <p class="mb-4 text-muted">Experienced developer with a diverse skill set in web and mobile
+                        development, delivering innovative solutions with modern technologies.</p>
+
+                    <div class="skills-section">
+                        <h3 class="mb-4 text-dark">My Technical Skills</h3>
+                        <div class="row align-items-center">
+                            <!-- Backend Skills -->
+                            <div class="col-md-6 mb-4">
+                                <div class="skill-card p-3 shadow-sm rounded">
+                                    <h5 class="mb-3 text-primary">Backend Skills</h5>
+                                    <ul class="list-unstyled">
+                                        <li class="mb-2"><strong>PHP</strong></li>
+                                        <li class="mb-2"><strong>Laravel Framework</strong><br><small>Versions: 5.4,
+                                                5.5, 5.7, 8, 9, 10, 11</small></li>
+                                        <li class="mb-2"><strong>Xamarin</strong></li>
+                                        <li><strong>C# .NET Framework</strong><br><small>.NET Core MVC 4</small></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Frontend Skills -->
+                            <div class="col-md-6 mb-4">
+                                <div class="skill-card p-3 shadow-sm rounded">
+                                    <h5 class="mb-3 text-primary">Frontend Skills</h5>
+                                    <ul class="list-unstyled">
+                                        <li class="mb-2"><strong>HTML</strong></li>
+                                        <li class="mb-2"><strong>CSS</strong></li>
+                                        <li class="mb-2"><strong>JavaScript</strong></li>
+                                        <li class="mb-2"><strong>Alpine.js</strong></li>
+                                        <li><strong>WordPress</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Database Skills -->
+                            <div class="col-md-6 mb-4">
+                                <div class="skill-card p-3 shadow-sm rounded">
+                                    <h5 class="mb-3 text-primary">Database Skills</h5>
+                                    <ul class="list-unstyled">
+                                        <li class="mb-2"><strong>phpMyAdmin</strong></li>
+                                        <li class="mb-2"><strong>SQL Server</strong></li>
+                                        <li class="mb-2"><strong>PostgreSQL</strong></li>
+                                        <li><strong>MariaDB</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Server Skills -->
+                            <div class="col-md-6 mb-4">
+                                <div class="skill-card p-3 shadow-sm rounded">
+                                    <h5 class="mb-3 text-primary">Server & Command Skills</h5>
+                                    <ul class="list-unstyled">
+                                        <li class="mb-2"><strong>Hostinger</strong></li>
+                                        <li class="mb-2"><strong>Digital Ocean</strong></li>
+                                        <li><strong>Debian</strong><br><small>Version 12</small></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <ul class="nav nav-pills rounded border border-2 border-primary mb-5 shadow-sm">
+                        <li class="nav-item w-50">
+                            <button class="nav-link w-100 py-3 fs-5 active fw-bold" data-bs-toggle="pill"
+                                href="#tab-1">Experience</button>
+                        </li>
+                        <li class="nav-item w-50">
+                            <button class="nav-link w-100 py-3 fs-5 fw-bold" data-bs-toggle="pill"
+                                href="#tab-2">Education</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <!-- Experience Tab -->
+                        <div id="tab-1" class="tab-pane fade show p-0 active">
+                            <div class="row gy-5 gx-4">
+                                <div class="col-sm-6">
+                                    <div class="experience-card p-3 shadow-sm rounded">
+                                        <h5 class="text-dark">UI Designer</h5>
+                                        <hr class="text-primary my-2">
+                                        <p class="text-primary mb-1">2000 - Present</p>
+                                        <h6 class="mb-0 text-muted">Apex Software Inc</h6>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="experience-card p-3 shadow-sm rounded">
+                                        <h5 class="text-dark">Product Designer</h5>
+                                        <hr class="text-primary my-2">
+                                        <p class="text-primary mb-1">2000 - Present</p>
+                                        <h6 class="mb-0 text-muted">Apex Software Inc</h6>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="experience-card p-3 shadow-sm rounded">
+                                        <h5 class="text-dark">Web Designer</h5>
+                                        <hr class="text-primary my-2">
+                                        <p class="text-primary mb-1">2000 - Present</p>
+                                        <h6 class="mb-0 text-muted">Apex Software Inc</h6>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="experience-card p-3 shadow-sm rounded">
+                                        <h5 class="text-dark">Apps Designer</h5>
+                                        <hr class="text-primary my-2">
+                                        <p class="text-primary mb-1">2000 - Present</p>
+                                        <h6 class="mb-0 text-muted">Apex Software Inc</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Education Tab -->
+                        <div id="tab-2" class="tab-pane fade show p-0">
+                            <div class="row gy-5 gx-4">
+                                <div class="col-sm-6">
+                                    <div class="experience-card p-3 shadow-sm rounded">
+                                        <h5 class="text-dark">UI Design Course</h5>
+                                        <hr class="text-primary my-2">
+                                        <p class="text-primary mb-1">2000 - 2005</p>
+                                        <h6 class="mb-0 text-muted">Cambridge University</h6>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="experience-card p-3 shadow-sm rounded">
+                                        <h5 class="text-dark">iOS Development</h5>
+                                        <hr class="text-primary my-2">
+                                        <p class="text-primary mb-1">2000 - 2005</p>
+                                        <h6 class="mb-0 text-muted">Cambridge University</h6>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="experience-card p-3 shadow-sm rounded">
+                                        <h5 class="text-dark">Web Design</h5>
+                                        <hr class="text-primary my-2">
+                                        <p class="text-primary mb-1">2000 - 2005</p>
+                                        <h6 class="mb-0 text-muted">Cambridge University</h6>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="experience-card p-3 shadow-sm rounded">
+                                        <h5 class="text-dark">Apps Design</h5>
+                                        <hr class="text-primary my-2">
+                                        <p class="text-primary mb-1">2000 - 2005</p>
+                                        <h6 class="mb-0 text-muted">Cambridge University</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Expertise End -->
+
+    <!-- Projects Start -->
+    <div class="container-xxl py-6 pt-5" id="project">
+        <div class="container">
+            <div class="row g-5 mb-5 align-items-center wow fadeInUp" data-wow-delay="0.1s">
+                <div class="col-lg-6">
+                    <h1 class="display-5 mb-0">My Projects</h1>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <ul class="list-inline mx-n3 mb-0" id="portfolio-flters">
+                        <li class="mx-3 active" data-filter="*">All Projects</li>
+                        <li class="mx-3" data-filter=".first">UI/UX Design</li>
+                        <li class="mx-3" data-filter=".second">Graphic Design</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row g-4 portfolio-container wow fadeInUp" data-wow-delay="0.1s">
+                <div class="col-lg-4 col-md-6 portfolio-item first">
+                    <div class="portfolio-img rounded overflow-hidden">
+                        <img class="img-fluid" src="img/project-1.jpg" alt="">
+                        <div class="portfolio-btn">
+                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/project-1.jpg"
+                                data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href=""><i
+                                    class="fa fa-link"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item second">
+                    <div class="portfolio-img rounded overflow-hidden">
+                        <img class="img-fluid" src="img/project-2.jpg" alt="">
+                        <div class="portfolio-btn">
+                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/project-2.jpg"
+                                data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href=""><i
+                                    class="fa fa-link"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item first">
+                    <div class="portfolio-img rounded overflow-hidden">
+                        <img class="img-fluid" src="img/project-3.jpg" alt="">
+                        <div class="portfolio-btn">
+                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/project-3.jpg"
+                                data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href=""><i
+                                    class="fa fa-link"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item second">
+                    <div class="portfolio-img rounded overflow-hidden">
+                        <img class="img-fluid" src="img/project-4.jpg" alt="">
+                        <div class="portfolio-btn">
+                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/project-4.jpg"
+                                data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href=""><i
+                                    class="fa fa-link"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item first">
+                    <div class="portfolio-img rounded overflow-hidden">
+                        <img class="img-fluid" src="img/project-5.jpg" alt="">
+                        <div class="portfolio-btn">
+                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/project-5.jpg"
+                                data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href=""><i
+                                    class="fa fa-link"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item second">
+                    <div class="portfolio-img rounded overflow-hidden">
+                        <img class="img-fluid" src="img/project-6.jpg" alt="">
+                        <div class="portfolio-btn">
+                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/project-6.jpg"
+                                data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href=""><i
+                                    class="fa fa-link"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Projects End -->
+
+    <!-- Contact Start -->
+    <div class="container-xxl pb-5" id="contact">
+        <div class="container py-5">
+            <div class="row g-5 mb-5 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="col-lg-6 mx-auto">
+                    <h1 class="display-5 mb-0 text-center">Let's Work Together</h1>
+                </div>
+            </div>
+            <div class="row g-5">
+                <div class="col-lg-5 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body">
+                            <h3 class="fw-bold mb-3">Get in Touch</h3>
+                            <p class="mb-2 text-muted">My office:</p>
+                            <p class="fw-medium">
+                                Suthisan, Ratchadaphisek Rd., Samsen Nok Subdistrict, <br>
+                                Huai Khwang District, Bangkok 10310
+                            </p>
+                            <hr class="w-100 my-3">
+                            <p class="mb-2 text-muted">Mail me:</p>
+                            <p class="fw-medium">tawisak.pinpayun@gmail.com</p>
+                            <hr class="w-100 my-3">
+                            <p class="mb-2 text-muted">Follow me:</p>
+                            <div class="d-flex pt-2">
+                                <a class="btn btn-square btn-primary me-2" href="https://www.twitch.tv/jamjaykorazaon"
+                                    target="_blank"><i class="fab fa-twitch"></i></a>
+                                <a class="btn btn-square btn-primary me-2"
+                                    href="https://www.facebook.com/jamjaykorazaon" target="_blank"><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-primary me-2"
+                                    href="https://www.youtube.com/@jamjaykorazaon" target="_blank"><i
+                                        class="fab fa-youtube"></i></a>
+                                <a class="btn btn-square btn-primary me-2" href="https://www.tiktok.com/@jamjaykorazaon"
+                                    target="_blank"><i class="fab fa-tiktok"></i></a>
+                                <a class="btn btn-square btn-primary me-2"
+                                    href="https://www.instagram.com/jamjaykorazaon" target="_blank"><i
+                                        class="fab fa-instagram"></i></a>
+                                <a class="btn btn-square btn-primary me-2" href="https://www.github.com/jamjaykorazaon"
+                                    target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body">
+                            <h3 class="fw-bold mb-3">Send a Message</h3>
+                            <form>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                            <label for="name">Your Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="email" class="form-control" id="email"
+                                                placeholder="Your Email">
+                                            <label for="email">Your Email</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                            <label for="subject">Subject</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" placeholder="Leave a message here"
+                                                id="message" style="height: 120px"></textarea>
+                                            <label for="message">Message</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-primary w-100 py-2" type="submit">Send Message</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+
+    <!-- Copyright Start -->
+    <div class="container-fluid bg-dark text-white py-4">
+        <div class="container">
             <div class="row">
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature-card p-4">
-                        <i class="bi bi-people-fill display-4 mb-3" style="color: var(--primary);"></i>
-                        <h3>4-Player Chaos</h3>
-                        <p>Play with friends locally or online in crazy mini-games</p>
-                    </div>
-                </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
-                    <div class="feature-card p-4">
-                        <i class="bi bi-controller display-4 mb-3" style="color: var(--primary);"></i>
-                        <h3>Easy to Play</h3>
-                        <p>Simple controls with deep strategic possibilities</p>
-                    </div>
-                </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
-                    <div class="feature-card p-4">
-                        <i class="bi bi-trophy-fill display-4 mb-3" style="color: var(--primary);"></i>
-                        <h3>Competitive Fun</h3>
-                        <p>Leaderboards and seasonal events</p>
-                    </div>
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom text-secondary" href="#">tawisak.pinpayun</a>, All Right Reserved.
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+    </div>
+    <!-- Copyright End -->
 
-    <!-- Trailer Section -->
-    <section id="trailer" class="py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6" data-aos="fade-right" data-aos-duration="1000">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/placeholder" 
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen></iframe>
-                    </div>
-                </div>
-                <div class="col-md-6" data-aos="fade-left" data-aos-duration="1000">
-                    <h2>Watch the Mayhem</h2>
-                    <p class="lead">Check out the official trailer for a taste of the action!</p>
-                    <ul class="list-unstyled">
-                        <li><i class="bi bi-check2-circle me-2"></i> 50+ unique mini-games</li>
-                        <li><i class="bi bi-check2-circle me-2"></i> Cross-platform play</li>
-                        <li><i class="bi bi-check2-circle me-2"></i> Regular content updates</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Download Section -->
-    <section id="download" class="py-5 bg-secondary">
-        <div class="container text-center" data-aos="zoom-in" data-aos-duration="1000">
-            <h2>Get It Now!</h2>
-            <div class="d-flex justify-content-center flex-wrap mt-4">
-                <button class="cta-button me-3 mb-3">
-                    <i class="bi bi-steam me-2"></i> Steam
-                </button>
-                <button class="cta-button me-3 mb-3">
-                    <i class="bi bi-playstation me-2"></i> PlayStation
-                </button>
-                <button class="cta-button me-3 mb-3">
-                    <i class="bi bi-xbox me-2"></i> Xbox
-                </button>
-                <button class="cta-button mb-3">
-                    <i class="bi bi-nintendo-switch me-2"></i> Switch
-                </button>
-            </div>
-        </div>
-    </section>
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row py-4">
-                <div class="col-md-4">
-                    <img src="https://i.imgur.com/4x7h3kt.png" alt="Logo" class="mb-3" width="120">
-                    <p class="small">© 2023 Party Animals, Inc. All rights reserved.</p>
-                </div>
-                <div class="col-md-2">
-                    <h5>Game</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-light">Features</a></li>
-                        <li><a href="#" class="text-light">Characters</a></li>
-                        <li><a href="#" class="text-light">News</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-2">
-                    <h5>Support</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-light">FAQ</a></li>
-                        <li><a href="#" class="text-light">Contact</a></li>
-                        <li><a href="#" class="text-light">Community</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Follow Us</h5>
-                    <div class="social-icons mt-3">
-                        <a href="#"><img src="https://i.imgur.com/3uJjY9D.png" alt="Facebook" width="48" height="48"></a>
-                        <a href="#"><img src="https://i.imgur.com/5QbX4yA.jpg" alt="Twitter" width="48" height="48"></a>
-                        <a href="#"><img src="https://i.imgur.com/0XbGz6m.png" alt="YouTube" width="48" height="48"></a>
-                        <a href="#"><img src="https://i.imgur.com/8uZQb3R.png" alt="Instagram" width="48" height="48"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/typed/typed.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
     <script>
-        AOS.init({
-            duration: 1000,
-            once: true
+        var typed = new Typed('.typed-text-output', {
+            stringsElement: '.typed-text',
+            typeSpeed: 50,
+            backSpeed: 30,
+            loop: true
         });
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        window.addEventListener('scroll', () => {
+    </script>
+    <script>
+        window.addEventListener('scroll', function () {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
@@ -325,4 +603,5 @@
         });
     </script>
 </body>
+
 </html>
