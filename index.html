@@ -95,6 +95,330 @@
             background: #ffffff !important;
             box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
         }
+
+        .footer {
+            z-index: 1;
+            --footer-background: linear-gradient(to bottom, #4567b7, #6495ed);
+            background: var(--footer-background);
+            /* เพิ่ม background เพื่อให้ gradient ทำงาน */
+            position: relative;
+            flex-shrink: 0;
+            min-height: 12rem;
+            width: 100%;
+            animation: gradientGlow 4s ease-in-out infinite;
+            /* เปลี่ยนชื่อและปรับเวลา */
+        }
+
+        /* ปรับแอนิเมชันให้ดูนุ่มนวลและมีมิติ */
+        @keyframes gradientGlow {
+            0% {
+                background: linear-gradient(to bottom, #4567b7, #6495ed);
+                box-shadow: 0 0 10px rgba(100, 149, 237, 0.5);
+                /* เพิ่มเงาเล็กน้อย */
+            }
+
+            50% {
+                background: linear-gradient(to bottom, #6495ed, #4567b7);
+                /* สลับสี */
+                box-shadow: 0 0 20px rgba(100, 149, 237, 0.8);
+                /* เงาเข้มขึ้น */
+            }
+
+            100% {
+                background: linear-gradient(to bottom, #4567b7, #6495ed);
+                /* กลับมาเหมือนเดิม */
+                box-shadow: 0 0 10px rgba(100, 149, 237, 0.5);
+            }
+        }
+
+        .footer .bubbles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1rem;
+            background: var(--footer-background);
+            filter: url("#blob");
+            z-index: 2;
+            /* ฟองอากาศอยู่ชั้นกลาง */
+        }
+
+        .footer .bubble {
+            position: absolute;
+            left: var(--position, 40%);
+            background: var(--footer-background);
+            border-radius: 100%;
+            animation: bubble-size var(--time, 4s) ease-in infinite var(--delay, 0s),
+                bubble-move var(--time, 4s) ease-in infinite var(--delay, 0s);
+            transform: translate(-50%, 100%);
+        }
+
+        .footer .content {
+            z-index: 3;
+            /* ตัวหนังสืออยู่หน้าสุด */
+            display: grid;
+            grid-gap: 4rem;
+            padding: 2rem;
+            background: var(--footer-background);
+            position: relative;
+        }
+
+        .footer .content a,
+        .footer .content p {
+            color: #F5F7FA;
+            text-decoration: none;
+        }
+
+        .footer .content b {
+            color: white;
+        }
+
+        .footer .content p {
+            margin: 0;
+            font-size: .75rem;
+        }
+
+        .footer .content>div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .footer .content>div>div {
+            margin: 0.25rem 0;
+        }
+
+        .footer .content>div>div>* {
+            margin-right: .5rem;
+        }
+
+        .footer .content .image {
+            align-self: center;
+            width: 4rem;
+            height: 4rem;
+            margin: 0.25rem 0;
+            background-size: cover;
+            background-position: center;
+        }
+
+        @keyframes bubble-size {
+
+            0%,
+            75% {
+                width: var(--size, 4rem);
+                height: var(--size, 4rem);
+            }
+
+            100% {
+                width: 0rem;
+                height: 0rem;
+            }
+        }
+
+        @keyframes bubble-move {
+            0% {
+                bottom: -4rem;
+            }
+
+            100% {
+                bottom: var(--distance, 10rem);
+            }
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 20vh;
+            /* กำหนดความสูงของหน้าจอ */
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .copyright-text {
+            font-size: 18px !important;
+            color: #666;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .copyright-text a {
+            color: #666;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .copyright-text a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            font-family: 'Exo', sans-serif;
+        }
+
+        .bg-context {
+            width: 100%;
+            position: absolute;
+            top: 50vh;
+        }
+
+        .bg-context h1 {
+            text-align: center;
+            color: #fff;
+            font-size: 50px;
+        }
+
+        .bg-area {
+            background: #4e54c8;
+            background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
+            width: 100%;
+            height: 70vh;
+            position: relative;
+        }
+
+        .bg-circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .bg-circles li {
+            position: absolute;
+            display: block;
+            list-style: none;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            animation: bg-animate 25s linear infinite;
+            bottom: -150px;
+        }
+
+        .bg-circles li:nth-child(1) {
+            left: 25%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+
+        .bg-circles li:nth-child(2) {
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+            animation-duration: 12s;
+        }
+
+        .bg-circles li:nth-child(3) {
+            left: 70%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 4s;
+        }
+
+        .bg-circles li:nth-child(4) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+
+        .bg-circles li:nth-child(5) {
+            left: 65%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0s;
+        }
+
+        .bg-circles li:nth-child(6) {
+            left: 75%;
+            width: 110px;
+            height: 110px;
+            animation-delay: 3s;
+        }
+
+        .bg-circles li:nth-child(7) {
+            left: 35%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 7s;
+        }
+
+        .bg-circles li:nth-child(8) {
+            left: 50%;
+            width: 25px;
+            height: 25px;
+            animation-delay: 15s;
+            animation-duration: 45s;
+        }
+
+        .bg-circles li:nth-child(9) {
+            left: 20%;
+            width: 15px;
+            height: 15px;
+            animation-delay: 2s;
+            animation-duration: 35s;
+        }
+
+        .bg-circles li:nth-child(10) {
+            left: 85%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 0s;
+            animation-duration: 11s;
+        }
+
+        @keyframes bg-animate {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+
+        /* Additional styles for your content */
+        #about {
+            position: relative;
+            z-index: 2;
+            padding: 3rem 0;
+            color: #fff;
+        }
+
+        .years h1 {
+            color: #fff;
+        }
+
+        .btn-primary {
+            background-color: #4e54c8;
+            border: none;
+        }
+
+        .text-primary {
+            color: #8f94fb !important;
+        }
+
+        .border-end {
+            border-color: rgba(255, 255, 255, 0.3) !important;
+        }
     </style>
 </head>
 
@@ -142,7 +466,7 @@
 
 
     <!-- Header Start -->
-    <div class="container-fluid bg-light my-6 mt-0" id="home"
+    <div class="container-fluid bg-light my-6 mt-0 mb-0" id="home"
         style="min-height: 50vh; display: flex; align-items: center;">
         <div class="container">
             <div class="row g-5 align-items-center">
@@ -168,49 +492,62 @@
         </div>
     </div>
     <!-- Header End -->
-
-    <!-- About Start -->
-    <div class="container-xxl py-6" id="about">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="d-flex align-items-center mb-5">
-                        <div class="years flex-shrink-0 text-center me-4">
-                            <h1 class="display-1 mb-0">3</h1>
-                            <h5 class="mb-0">Years</h5>
+    <div class="bg-area">
+        <ul class="bg-circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="container-xxl py-6" id="about">
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="d-flex align-items-center mb-5">
+                            <div class="years flex-shrink-0 text-center me-4">
+                                <h1 class="display-1 mb-0">3</h1>
+                                <h5 class="mb-0">Years</h5>
+                            </div>
+                            <h3 class="lh-base mb-0">of working experience as a Fullstack Developer , Web
+                                Application Developer</h3>
                         </div>
-                        <h3 class="lh-base mb-0">of working experience as a Fullstack Developer , Web Application
-                            Developer</h3>
+                        <p class="mb-4">Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No stet est
+                            diam rebum amet diam ipsum. Clita clita labore, dolor duo nonumy clita sit at, sed sit
+                            sanctus dolor eos.</p>
+                        <p class="mb-3"><i class="far fa-check-circle text-primary me-3"></i>Afordable Prices</p>
+                        <p class="mb-3"><i class="far fa-check-circle text-primary me-3"></i>High Quality Product
+                        </p>
+                        <p class="mb-3"><i class="far fa-check-circle text-primary me-3"></i>On Time Project
+                            Delivery</p>
                     </div>
-                    <p class="mb-4">Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No stet est diam rebum
-                        amet diam ipsum. Clita clita labore, dolor duo nonumy clita sit at, sed sit sanctus dolor eos.
-                    </p>
-                    <p class="mb-3"><i class="far fa-check-circle text-primary me-3"></i>Afordable Prices</p>
-                    <p class="mb-3"><i class="far fa-check-circle text-primary me-3"></i>High Quality Product</p>
-                    <p class="mb-3"><i class="far fa-check-circle text-primary me-3"></i>On Time Project Delivery</p>
-                    <a class="btn btn-primary py-3 px-5 mt-3" href="">Read More</a>
-                </div>
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="row g-3 mb-4">
-                        <div class="col-sm-6">
-                            <img class="img-fluid rounded" src="img/about-1.jpg" alt="">
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="row g-3 mb-4">
+                            <div class="col-sm-6">
+                                <img class="img-fluid rounded" src="img/about-1.jpg" alt="">
+                            </div>
+                            <div class="col-sm-6">
+                                <img class="img-fluid rounded" src="img/about-2.jpg" alt="">
+                            </div>
                         </div>
-                        <div class="col-sm-6">
-                            <img class="img-fluid rounded" src="img/about-2.jpg" alt="">
+                        <div class="d-flex align-items-center mb-3">
+                            <h5 class="border-end pe-3 me-3 mb-0">Happy Clients</h5>
+                            <h2 class="text-primary fw-bold mb-0" data-toggle="counter-up">1234</h2>
                         </div>
+                        <p class="mb-4">Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No stet est
+                            diam amet diam ipsum clita labore dolor duo clita.</p>
+                        <div class="d-flex align-items-center mb-3">
+                            <h5 class="border-end pe-3 me-3 mb-0">Projects Completed</h5>
+                            <h2 class="text-primary fw-bold mb-0" data-toggle="counter-up">1234</h2>
+                        </div>
+                        <p class="mb-0">Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No stet est
+                            diam amet diam ipsum clita labore dolor duo clita.</p>
                     </div>
-                    <div class="d-flex align-items-center mb-3">
-                        <h5 class="border-end pe-3 me-3 mb-0">Happy Clients</h5>
-                        <h2 class="text-primary fw-bold mb-0" data-toggle="counter-up">1234</h2>
-                    </div>
-                    <p class="mb-4">Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No stet est diam amet
-                        diam ipsum clita labore dolor duo clita.</p>
-                    <div class="d-flex align-items-center mb-3">
-                        <h5 class="border-end pe-3 me-3 mb-0">Projects Completed</h5>
-                        <h2 class="text-primary fw-bold mb-0" data-toggle="counter-up">1234</h2>
-                    </div>
-                    <p class="mb-0">Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No stet est diam amet
-                        diam ipsum clita labore dolor duo clita.</p>
                 </div>
             </div>
         </div>
@@ -552,16 +889,43 @@
     <!-- Contact End -->
 
     <!-- Copyright Start -->
-    <div class="container-fluid bg-dark text-white py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="border-bottom text-secondary" href="#">tawisak.pinpayun</a>, All Right Reserved.
-                </div>
+    <div class="footer">
+        <div class="bubbles">
+            <script>
+                for (let i = 0; i < 128; i++) {
+                    const size = 2 + Math.random() * 4;
+                    const distance = 6 + Math.random() * 4;
+                    const position = -5 + Math.random() * 110;
+                    const time = 2 + Math.random() * 2;
+                    const delay = -1 * (2 + Math.random() * 2);
+                    document.write(`
+                        <div class="bubble" style="
+                            --size: ${size}rem;
+                            --distance: ${distance}rem;
+                            --position: ${position}%;
+                            --time: ${time}s;
+                            --delay: ${delay}s;
+                        "></div>
+                    `);
+                }
+            </script>
+        </div>
+        <div class="content">
+            <div class="center">
+                <p id="copyright" class="copyright-text"></p>
             </div>
         </div>
     </div>
-    </div>
+
+    <svg style="position: fixed; top: 100vh;">
+        <defs>
+            <filter id="blob">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+                    result="blob" />
+            </filter>
+        </defs>
+    </svg>
     <!-- Copyright End -->
 
 
@@ -601,6 +965,9 @@
                 navbar.classList.remove('scrolled');
             }
         });
+        // อัปเดตข้อความลิขสิทธิ์พร้อมปีปัจจุบัน
+        const currentYear = new Date().getFullYear();
+        document.getElementById("copyright").innerHTML = `© <a href="#">tawisak.pinpayun</a>, All Right Reserved. ${currentYear}`;
     </script>
 </body>
 
